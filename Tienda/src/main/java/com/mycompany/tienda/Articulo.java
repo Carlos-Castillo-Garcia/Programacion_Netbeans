@@ -56,7 +56,7 @@ public class Articulo {
 			return "Codigo: " + this.codigo 
 				   + "\nNombre: " + this.nombre 
 				   + "\nPrecio: " + this.precio
-				   + "\n Stock: " + this.stock + "\n";
+				   + "\nStock: " + this.stock + "\n";
 		}
 		@Override 
 		public boolean equals(Object o) {

@@ -75,6 +75,7 @@ public class Tienda {
 		c.add(new Articulo("0002", "Teclado", 30.00F, 40));
 		c.add(new Articulo("0003", "Raton", 25.99F, 100));
 		c.add(new Articulo("0004", "RJ45-5M-Cat 6", 10.00F, 25));
+                c.add(new Ropa("rojo", 10, "0005", "jersei", 15.00F, 35));
 	}
 	private static void addArticuloCatalogo(ArrayList <Articulo> c, Scanner texto, Scanner ints) {
 		System.out.println("Introduce el codigo del articulo:");
@@ -122,9 +123,6 @@ public class Tienda {
 		}while(opsalida.equals("no"));
 
 	}
-//	private static void aumentarCodigoArticulo() {
-//	
-//}
 	private static void modifstock(ArrayList<Articulo> c, Carrito carro) {
 		int pos;
 		for(ArticuloCarrito ac: carro.pedido) {
