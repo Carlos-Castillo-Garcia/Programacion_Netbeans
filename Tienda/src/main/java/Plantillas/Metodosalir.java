@@ -17,7 +17,7 @@ public class Metodosalir {
 		if(salir == "si") {                                                     
 			System.out.println("Hasta luego");                           
 		}else {                                                               
-			System.out.println("");               							
+			System.out.println("Vuelve a introducir una opcion");               							
 		}	
 		return salir;
 	}
