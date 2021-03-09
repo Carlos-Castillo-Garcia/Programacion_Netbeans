@@ -77,7 +77,7 @@ public class Tienda {
 		c.add(new Articulo("0004", "RJ45-5M-Cat 6", 10.00F, 25));
                 c.add(new Ropa("rojo", 10, "0005", "jersei", 15.00F, 35));
                 c.add(new Electrodomestico(ClasE.F, "alta", "0006", "lavadora", 200.00F, 35));
-//                c.add(new Lavadora(,ClasE.F, "alta", "0006", "lavadora", 200.00F, 35))
+                c.add(new Lavadoras(Marcas.Balay, 500, 5, 65, 99.50F, ClasE.A, "alta", "0007", "lavadora", 200.00F, 35));
 	}
 	private static void addArticuloCatalogo(ArrayList <Articulo> c, Scanner texto, Scanner ints) {
 		System.out.println("Introduce el codigo del articulo:");
