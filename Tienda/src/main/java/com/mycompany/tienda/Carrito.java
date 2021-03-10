@@ -3,6 +3,7 @@
  */
 package com.mycompany.tienda;
 
+import com.mycompany.tienda.entidades.Articulo;
 import java.util.ArrayList;
 
 /**

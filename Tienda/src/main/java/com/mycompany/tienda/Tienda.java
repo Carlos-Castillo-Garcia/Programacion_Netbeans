@@ -3,6 +3,12 @@
  */
 package com.mycompany.tienda;
 
+import com.mycompany.tienda.entidades.Ropa;
+import com.mycompany.tienda.entidades.Lavadoras;
+import com.mycompany.tienda.entidades.Electrodomestico;
+import com.mycompany.tienda.entidades.Articulo;
+import com.mycompany.tienda.enumerados.ClasEn;
+import com.mycompany.tienda.enumerados.Marcas;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Plantillas.Metodosalir;
@@ -76,8 +82,8 @@ public class Tienda {
 		c.add(new Articulo("0003", "Raton", 25.99F, 100));
 		c.add(new Articulo("0004", "RJ45-5M-Cat 6", 10.00F, 25));
                 c.add(new Ropa("rojo", 10, "0005", "jersei", 15.00F, 35));
-                c.add(new Electrodomestico(ClasE.F, "alta", "0006", "lavadora", 200.00F, 35));
-                c.add(new Lavadoras(Marcas.Balay, 500, 5, 65, 99.50F, ClasE.A, "alta", "0007", "lavadora", 200.00F, 35));
+                c.add(new Electrodomestico(ClasEn.F, "alta", "0006", "lavadora", 200.00F, 35));
+                c.add(new Lavadoras(Marcas.Balay, 500, 5, 65, 99.50F, ClasEn.A, "alta", "0007", "lavadora", 200.00F, 35));
 	}
 	private static void addArticuloCatalogo(ArrayList <Articulo> c, Scanner texto, Scanner ints) {
 		System.out.println("Introduce el codigo del articulo:");
@@ -128,7 +134,7 @@ public class Tienda {
 	private static void modifstock(ArrayList<Articulo> c, Carrito carro) {
 		int pos;
 		for(ArticuloCarrito ac: carro.pedido) {
-			pos = buscarporcodigomod(c, ac.elemento.getCodigo());
+			pos = buscarporcodigomod(c, ac.elemento.getIds());
 			if(pos >- 1){
 				c.get(pos).ajustarstock(-1 * ac.cantidad);
 			}
@@ -140,7 +146,7 @@ public class Tienda {
 		int i = 0;
 
 		while(i<largo && !(encontrado)){
-			if(catalog.get(i).getCodigo().equals(codigo)){
+			if(catalog.get(i).getIds().equals(codigo)){
 				encontrado = true;
 			}else {
 				i++;
@@ -158,7 +164,7 @@ public class Tienda {
 		int i = 0;
 		Articulo a = null;
 		while(i<largo && !(encontrado)){
-			if(catalog.get(i).getCodigo().equals(codigo)){
+			if(catalog.get(i).getIds().equals(codigo)){
 				encontrado = true;
 				a = catalog.get(i);
 			}else {

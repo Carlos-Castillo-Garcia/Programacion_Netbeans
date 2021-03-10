@@ -3,6 +3,8 @@
  */
 package com.mycompany.tienda;
 
+import com.mycompany.tienda.entidades.Articulo;
+
 /**
  * @author PORTATIL 2
  *

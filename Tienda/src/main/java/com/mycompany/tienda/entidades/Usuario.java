@@ -5,6 +5,8 @@
  */
 package com.mycompany.tienda.entidades;
 
+import java.util.ArrayList;
+
 
 /**
  *
@@ -65,19 +67,23 @@ public class Usuario {
         this.email = email;
     }
     
-//    public boolean login(contraseña, password, email){
-//        
-//    }
-    
-    public boolean Compcontraseña (String c){
-        char[]contraseña = c.toCharArray();
+    public boolean login(String usuario, String password, ArrayList <Usuario> log){
         boolean comprobante = false;
-        for(int i = 0; i < contraseña.length;i++){
-            if(Character.isUpperCase(contraseña[i])){
-                if(contraseña.length>=8){
-                    comprobante= true;
+        for(Usuario user: log){
+            if(user.getNombre().equals(nombre)){
+                if(user.getPasswd().equals(password)){
+                    comprobante = true;
                 }
             }
+        } 
+        return comprobante;
+    }
+    
+    public boolean Compcontrasena (String c){
+        boolean comprobante = false;
+        comprobante = c.matches(".*[A-Z].*");
+        if(c.length()>=8){
+           comprobante= true;
         }
         return comprobante;
     }
@@ -91,7 +97,7 @@ public class Usuario {
     }
     
     public String Compemail(String e){
-        if(e.contains("@")){
+        if(e.matches("[-\\w\\.]+@[a-z]+\\.[a-z]+")){
             return e;
         }else{
             return nombre + "@correo.es";
