@@ -12,6 +12,7 @@ import com.mycompany.tienda.enumerados.Marcas;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Plantillas.Metodosalir;
+import com.mycompany.tienda.entidades.Usuario;
 
 /**
  * @author PORTATIL 2
@@ -31,6 +32,8 @@ public class Tienda {
 		int opcion = 0;
 		Carrito carro = new Carrito();
 		ArrayList <Articulo> catalogo = new ArrayList <Articulo>();
+                ArrayList <Usuario> regs = new ArrayList <Usuario>();
+                regs.add(new Usuario("admin123", "Contrasena1", "admin123@gmail.com"));
 		inicializarcatalogo(catalogo);
 
 		do {
@@ -39,6 +42,7 @@ public class Tienda {
 			System.out.println("2. Comprar un producto.");
 			System.out.println("3. Comfirmar la compra de los productos.");
 			System.out.println("4. Salir del la tienda.");
+                        System.out.println("5. Registrar ususario.");
 			opcion = scopcion.nextInt();
 			switch(opcion){
 				case 1:
@@ -67,6 +71,8 @@ public class Tienda {
 				case 4:
 					System.out.println("Muchas gracias por utilizar esta tienda.");
 					break;
+                                case 5:
+                                        register(regs, scstring);
 				default:
 					System.out.println("Has introducido la opcion incorrecta, vuelva a introducirla.");
 					break;
@@ -174,6 +180,46 @@ public class Tienda {
 		return a; 
 		
 	}
+        private static void register(ArrayList <Usuario> au, Scanner scstring){
+            Usuario a = new Usuario();
+            String user;
+            String pass;
+            String email;
+            int salida = 0;
+                      
+            do{
+                System.out.println("Introduzca el nombre de usuario: ");
+                user = scstring.nextLine();
+                System.out.println("Introduzca la contraseña: ");
+                pass = scstring.nextLine();
+                System.out.println("Introduzca el email: ");
+                email = scstring.nextLine();
+                if(a.Compnombre(user)){
+                   for(Usuario i: au){
+                       if(i.getNombre().equals(user)){
+                           System.out.println("El nombre de ususario ya esta cogido.");
+                       }else{
+                          if(a.Compcontrasena(pass)){
+                              if(a.Compemail(email)){
+                                 System.out.println("El usuario ha sido correctamente registrado.");
+                                 au.add(new Usuario(user, pass, email));
+                                 salida = 1;
+                              }else{
+                                 System.out.println("El email no cumple los requisitos, se le podra uno por defecto.");
+                                 email = a.getNombre() + "@correo.es";
+                                 System.out.println(a.getEmail());
+                                 salida = 1;
+                              }
+                          }else{
+                             System.out.println("La contraseña no cumple los requisitos.");
+                          }
+                       }
+                   }
+                }else{
+                   System.out.println("El nombre de ususario no cumple los requisitos.");
+                }
+            }while(salida != 1);
+        }
 }
 
 

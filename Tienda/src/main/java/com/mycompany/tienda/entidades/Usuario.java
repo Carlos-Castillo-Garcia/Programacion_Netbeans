@@ -96,11 +96,13 @@ public class Usuario {
         return comprobante;
     }
     
-    public String Compemail(String e){
+    public boolean Compemail(String e){
+        boolean comprobante = false;
         if(e.matches("[-\\w\\.]+@[a-z]+\\.[a-z]+")){
-            return e;
+            comprobante = true;
         }else{
-            return nombre + "@correo.es";
+            return comprobante;
         }
+        return comprobante;
     }
 }
