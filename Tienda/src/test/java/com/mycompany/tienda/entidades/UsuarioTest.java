@@ -48,7 +48,7 @@ public class UsuarioTest {
     public void testCompemail() {
         String e = "hola@email.com";
         Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com");
-        String expResult = "true";
+        boolean expResult = true;
         boolean result = carlos.Compemail(e);
         assertEquals(expResult, result);
     }
