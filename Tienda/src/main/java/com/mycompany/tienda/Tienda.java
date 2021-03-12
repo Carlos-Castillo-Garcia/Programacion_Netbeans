@@ -180,45 +180,69 @@ public class Tienda {
 		return a; 
 		
 	}
-        private static void register(ArrayList <Usuario> au, Scanner scstring){
-            Usuario a = new Usuario();
-
+        private static void register(ArrayList<Usuario> au, Scanner scstring) {
+            Usuario temp = new Usuario();
+            boolean usuario = false;
+            boolean pass = false;
+            boolean email = false;
             int salida = 0;
-                      
-            do{
+            do {
                 System.out.println("Introduzca el nombre de usuario: ");
-                a.setNombre(scstring.nextLine());
+                temp.setNombre(scstring.nextLine());
                 System.out.println("Introduzca la contraseña: ");
-                a.setPasswd(scstring.nextLine());
+                temp.setPasswd(scstring.nextLine());
                 System.out.println("Introduzca el email: ");
-                a.setEmail(scstring.nextLine());
-                if(a.Compnombre(a.getNombre())){
-                   for(Usuario i: au){
-                       if(i.getNombre().equals(a.getNombre())){
-                           System.out.println("El nombre de ususario ya esta cogido.");
-                       }else{
-                          if(a.Compcontrasena(a.getPasswd())){
-                              if(a.Compemail(a.getEmail())){
-                                 System.out.println("El usuario ha sido correctamente registrado.");
-                                 au.add(a);
-                                 salida = 1;
-                                 break;
-                              }else{
-                                 System.out.println("El email no cumple los requisitos, se le podra uno por defecto.");
-                                 a.setEmail(a.getNombre() + "@correo.es");
-                                 System.out.println(a.getEmail());
-                                 salida = 1;
-                                 break;
-                              }
-                          }else{
-                             System.out.println("La contraseña no cumple los requisitos.");
-                          }
-                       }
-                   }
-                }else{
-                   System.out.println("El nombre de ususario no cumple los requisitos.");
+                temp.setEmail(scstring.nextLine());
+                if (temp.Compnombre(temp.getNombre())) {
+                    for (Usuario i : au) {
+                        if (i.getNombre().equals(temp.getNombre())) {
+                            System.out.println("El nombre de ususario ya esta cogido.");
+                            usuario = false;
+                            break;
+                        } else{
+                            usuario = true;
+                        }
+                    }
+                } else {
+                    System.out.println("El nombre de ususario no cumple los requisitos.");
+                    usuario = false;
                 }
-            }while(salida != 1);
+                if(usuario == true){
+                    if(temp.Compcontrasena(temp.getPasswd())){
+                        pass = true;
+                    }else{
+                        pass = false;
+                        System.out.println("La contraseña no cumple con los requisitos.");
+                    }
+                }                
+                if(usuario == true && pass == true){
+                    if(temp.Compemail(temp.getEmail())){
+                        for(Usuario a: au){
+                            if(a.getEmail().equals(temp.getEmail())){
+                                System.out.println("El email ya esta registrado.");
+                                email = false;
+                                break;
+                            }else{
+                                email = true;
+                            }
+                        }
+                    }else{
+                        System.out.println("El email no cumple los requisitos");
+                        email = false;
+                    }
+                }
+                if(usuario == true && pass == true && email == true) {
+                    System.out.println("El usuario ha sido correctamente registrado.");
+                    salida = 1;
+                    au.add(temp);
+                }else if(usuario == true && pass == true && email == false) {
+                    System.out.println("El email no cumple los requisitos, se le podra uno por defecto.");
+                    temp.setEmail(temp.getNombre() + "@correo.es");
+                    System.out.println("Este es su email: " + temp.getEmail());
+                    au.add(temp);
+                    salida = 1;
+                }
+            } while (salida != 1);
         }
 }
 
