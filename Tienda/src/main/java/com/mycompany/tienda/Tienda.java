@@ -182,33 +182,33 @@ public class Tienda {
 	}
         private static void register(ArrayList <Usuario> au, Scanner scstring){
             Usuario a = new Usuario();
-            String user;
-            String pass;
-            String email;
+
             int salida = 0;
                       
             do{
                 System.out.println("Introduzca el nombre de usuario: ");
-                user = scstring.nextLine();
+                a.setNombre(scstring.nextLine());
                 System.out.println("Introduzca la contraseña: ");
-                pass = scstring.nextLine();
+                a.setPasswd(scstring.nextLine());
                 System.out.println("Introduzca el email: ");
-                email = scstring.nextLine();
-                if(a.Compnombre(user)){
+                a.setEmail(scstring.nextLine());
+                if(a.Compnombre(a.getNombre())){
                    for(Usuario i: au){
-                       if(i.getNombre().equals(user)){
+                       if(i.getNombre().equals(a.getNombre())){
                            System.out.println("El nombre de ususario ya esta cogido.");
                        }else{
-                          if(a.Compcontrasena(pass)){
-                              if(a.Compemail(email)){
+                          if(a.Compcontrasena(a.getPasswd())){
+                              if(a.Compemail(a.getEmail())){
                                  System.out.println("El usuario ha sido correctamente registrado.");
-                                 au.add(new Usuario(user, pass, email));
+                                 au.add(a);
                                  salida = 1;
+                                 break;
                               }else{
                                  System.out.println("El email no cumple los requisitos, se le podra uno por defecto.");
-                                 email = a.getNombre() + "@correo.es";
+                                 a.setEmail(a.getNombre() + "@correo.es");
                                  System.out.println(a.getEmail());
                                  salida = 1;
+                                 break;
                               }
                           }else{
                              System.out.println("La contraseña no cumple los requisitos.");
