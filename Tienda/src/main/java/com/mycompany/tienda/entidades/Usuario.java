@@ -24,6 +24,10 @@ public class Usuario {
         this.email = em;
         this.passwd = pass;
     }
+    public Usuario(String n, String pass){
+        this.nombre = n;
+        this.passwd = pass;
+    }
 
     /**
      * @return the contraseña
@@ -67,11 +71,11 @@ public class Usuario {
         this.email = email;
     }
     
-    public boolean login(String usuario, String password, ArrayList <Usuario> log){
+    public boolean login(ArrayList <Usuario> log, String user, String pass){
         boolean comprobante = false;
-        for(Usuario user: log){
-            if(user.getNombre().equals(nombre)){
-                if(user.getPasswd().equals(password)){
+        for(Usuario i: log){
+            if(i.getNombre().equals(user)){
+                if(i.getPasswd().equals(pass)){
                     comprobante = true;
                 }
             }
