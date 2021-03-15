@@ -5,24 +5,26 @@
  */
 package com.mycompany.tienda.entidades;
 
+import com.mycompany.tienda.enumerados.Tallas;
+
 /**
  *
  * @author PORTATIL 2
  */
 public class Ropa extends Articulo {
     String color;
-    int talla;
+    Tallas talla;
     
     public Ropa(){
     }
     
-    public Ropa(String c, int t, String co, String n, float p, int s){
+    public Ropa(String c, Tallas t, String co, String n, float p, int s){
         super(co, n, p, s);
         this.color = c;
         this.talla = t;
     }
     @Override
     public String toString (){
-        return super.toString() + "Color: " + color + "\nTalla: " + talla + ".\n";
+        return super.toString() + "Color: " + color + "\nTalla: " + talla + "\n";
     }
 }

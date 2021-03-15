@@ -13,12 +13,14 @@ import com.mycompany.tienda.enumerados.Puntuacion;
  */
 public class Opinion {
     Usuario user;
-    Puntuacion punt;
-    String coment;
-    int like;
-    int dislike;
+    public Puntuacion punt;
+    public String coment;
+    public int like;
+    public int dislike;
     
     public Opinion(){
+        like = 0;
+        dislike = 0;
     }
     
     public Opinion(Usuario user, Puntuacion punt, String coment){
@@ -36,9 +38,18 @@ public class Opinion {
     public void dardislike(int dislike){
         dislike++;
     }
-    
     @Override
-    public String toString(){
-        return "Usuario: "+user+ "\nComentario: "+coment+ "";
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Usuario: ")
+                .append(this.user)
+                .append("\nPuntuación: ")
+                .append(this.punt)
+                .append("\nLikes: ")
+                .append(this.like)
+                .append("Dislikes: ")
+                .append(this.dislike)
+                .append("\n");
+        return sb.toString();
     }
 }

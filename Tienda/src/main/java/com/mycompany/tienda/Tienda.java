@@ -12,7 +12,11 @@ import com.mycompany.tienda.enumerados.Marcas;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Plantillas.Metodosalir;
+import com.mycompany.tienda.entidades.Opinion;
 import com.mycompany.tienda.entidades.Usuario;
+import com.mycompany.tienda.enumerados.Permisos;
+import com.mycompany.tienda.enumerados.Puntuacion;
+import com.mycompany.tienda.enumerados.Tallas;
 
 /**
  * @author PORTATIL 2
@@ -37,7 +41,7 @@ public class Tienda {
         Usuario templog = new Usuario();
         ArrayList <Articulo> catalogo = new ArrayList <Articulo>();
         ArrayList <Usuario> regs = new ArrayList <Usuario>();
-        regs.add(new Usuario("admin123", "Contrasena1", "admin123@gmail.com"));
+        regs.add(new Usuario("admin123", "Contrasena1", "admin123@gmail.com", Permisos.admin));
         inicializarcatalogo(catalogo);
         
         do {
@@ -114,7 +118,7 @@ public class Tienda {
 		c.add(new Articulo("0002", "Teclado", 30.00F, 40));
 		c.add(new Articulo("0003", "Raton", 25.99F, 100));
 		c.add(new Articulo("0004", "RJ45-5M-Cat 6", 10.00F, 25));
-                c.add(new Ropa("rojo", 10, "0005", "jersei", 15.00F, 35));
+                c.add(new Ropa("rojo", Tallas.M, "0005", "jersei", 15.00F, 35));
                 c.add(new Electrodomestico(ClasEn.F, "alta", "0006", "lavadora", 200.00F, 35));
                 c.add(new Lavadoras(Marcas.Balay, 500, 5, 65, 99.50F, ClasEn.A, "alta", "0007", "lavadora", 200.00F, 35));
 	}
@@ -270,6 +274,71 @@ public class Tienda {
                     salida = 1;
                 }
             } while (salida != 1);
+        }
+        private static void giveop(ArrayList<Articulo> c, Usuario user, Scanner scstring, Scanner scopcion){
+            Opinion temp = new Opinion();
+            int opcion = 0;
+            String codigo;
+            int cont = 0;
+            
+            System.out.println("Introduzca el codigo del articulo para dar la opinion.");
+            codigo = scstring.nextLine();
+            
+            for(Articulo i: c){
+                if(i.getIds().equals(codigo)){
+                    do{
+                        
+                        System.out.println("Estas son las puntuaciones a dar: ");
+                        System.out.println("1. " + Puntuacion.excelente);
+                        System.out.println("2. " + Puntuacion.muybueno);
+                        System.out.println("3. " + Puntuacion.bueno);
+                        System.out.println("4. " + Puntuacion.malo);
+                        System.out.println("5. " + Puntuacion.terrible);
+                        System.out.println("6. Sin puntuacion.");
+                        opcion = scopcion.nextInt();
+                        switch(opcion){
+                            case 1:
+                                temp.punt = Puntuacion.excelente;
+                                break;
+                            case 2:
+                                temp.punt = Puntuacion.muybueno;
+                                break;
+                            case 3:
+                                temp.punt = Puntuacion.bueno;
+                                break;
+                            case 4:
+                                temp.punt = Puntuacion.malo;
+                                break;
+                            case 5:
+                                temp.punt = Puntuacion.terrible;
+                                break;
+                            case 6:
+                                System.out.println("Hasta luego.");
+                                break;
+                            default:
+                                System.out.println("La opcion no esta disponible.");
+                        }
+                    }while(opcion != 6);
+                    System.out.println("Escriba su opinion:");
+                    temp.coment = scstring.nextLine();
+                    i.getOpiniones().add(temp);
+                }else{
+                    cont++;
+                }
+            }
+            if(cont == c.size()){
+                System.out.println("Este articulo no existe.");
+            }
+        }
+        private static void seeop(ArrayList<Articulo> c, Scanner scstring ){
+            Opinion temp = new Opinion();
+            String codigo;
+            codigo = scstring.nextLine();
+            for(Articulo i: c){
+                if(i.getIds().equals(codigo)){
+                    temp.toString();
+                }
+            }
         }
 }
 

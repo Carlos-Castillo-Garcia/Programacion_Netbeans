@@ -51,9 +51,6 @@ public class Electrodomestico extends Articulo {
     public void setGama(String gama) {
         this.gama = gama;
     }
-
-    
-    
         @Override
     public String toString (){
         return super.toString() + "Clasificacion energetica: " + clasificacion + "\nGama: " + gama + "\n";

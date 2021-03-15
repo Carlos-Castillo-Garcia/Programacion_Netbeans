@@ -5,6 +5,7 @@
  */
 package com.mycompany.tienda.entidades;
 
+import com.mycompany.tienda.enumerados.Permisos;
 import java.util.ArrayList;
 
 
@@ -16,17 +17,15 @@ public class Usuario {
     private String nombre;
     private String passwd;
     private String email;
+    private Permisos permisos;
     
     public Usuario(){
     }
-    public Usuario(String n, String pass, String em){
+    public Usuario(String n, String pass, String em, Permisos permisos){
         this.nombre = n;
         this.email = em;
         this.passwd = pass;
-    }
-    public Usuario(String n, String pass){
-        this.nombre = n;
-        this.passwd = pass;
+        this.permisos = permisos;
     }
 
     /**
