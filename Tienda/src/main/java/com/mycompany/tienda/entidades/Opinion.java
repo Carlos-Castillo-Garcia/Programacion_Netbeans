@@ -13,30 +13,11 @@ import com.mycompany.tienda.enumerados.Puntuacion;
  */
 public class Opinion {
     Usuario user;
-
-    /**
-     *
-     */
     public Puntuacion punt;
-
-    /**
-     *
-     */
     public String coment;
-
-    /**
-     *
-     */
     public int like;
-
-    /**
-     *
-     */
     public int dislike;
-    
-    /**
-     *
-     */
+
     public Opinion(){
         like = 0;
         dislike = 0;
