@@ -60,15 +60,16 @@ public class Tienda {
                     pass = scstring.nextLine();
                     
                     if(templog.login(regs, user, pass)){
-                        
-                        do{
                             System.out.println("Ya esta loggeado.");
                             System.out.println("Esto es el menu de la tienda, tiene diferentes opciones:");
+                        do{
+
                             System.out.println("1. Añadir un articulo al catalogo");
                             System.out.println("2. Comprar un producto.");
                             System.out.println("3. Comfirmar la compra de los productos.");
                             System.out.println("4. Dar opinion.");
-                            System.out.println("5. Salir del la tienda.");
+                            System.out.println("5. Ver opinion.");
+                            System.out.println("6. Salir del la tienda.");
                             opcion2 = scopcion.nextInt();
                             switch(opcion2){
                                 case 1:
@@ -82,22 +83,15 @@ public class Tienda {
                                     comprar(catalogo, carro, scstring, scint);
                                     break;
                                 case 3:
-                                    System.out.println("Has elegido la opcion de confirmas la compra de productos.\n");
-                                    System.out.println(carro.mostarcarrito());
-                                    System.out.println("¿Desea confirmar el carrito? (si)(no)");
-                                    String sctemp = scstring.nextLine();
-                                    if(sctemp.equals("si")) {
-                                        System.out.println(carro.confirmacion());
-                                        modifstock(catalogo, carro);
-                                        mostrarCatalogo(catalogo);
-                                    }else{
-                                        System.out.println("Si desea seguir comprando marque la opcion 2.\n");
-                                    }
+                                    Confirmacion(carro, scstring, catalogo);
                                     break;
                                 case 4:
                                     giveop(catalogo, scstring, scopcion);
                                     break;
                                 case 5:
+                                    seeop(catalogo, scstring);
+                                    break;
+                                case 6:
                                     System.out.println("Muchas gracias por utilizar esta tienda.");
                                     break;
                                 default:
@@ -119,6 +113,20 @@ public class Tienda {
         scstring.close();
         scint.close();
         scopcion.close();
+    }
+
+    private static void Confirmacion(Carrito carro, Scanner scstring, ArrayList<Articulo> catalogo) {
+        System.out.println("Has elegido la opcion de confirmas la compra de productos.\n");
+        System.out.println(carro.mostarcarrito());
+        System.out.println("¿Desea confirmar el carrito? (si)(no)");
+        String sctemp = scstring.nextLine();
+        if(sctemp.equals("si")) {
+            System.out.println(carro.confirmacion());
+            modifstock(catalogo, carro);
+            mostrarCatalogo(catalogo);
+        }else{
+            System.out.println("Si desea seguir comprando marque la opcion 2.\n");
+        }
     }
 	private static void inicializarcatalogo(ArrayList <Articulo> c) {
 		c.add(new Articulo("0001", "Monitor", 200.00F, 10));
@@ -359,6 +367,7 @@ public class Tienda {
         private static void seeop(ArrayList<Articulo> c, Scanner scstring ){
             Opinion temp = new Opinion();
             String codigo;
+            System.out.println("Introduzca el codigo del articulo.");
             codigo = scstring.nextLine();
             for(Articulo i: c){
                 if(i.getIds().equals(codigo)){
