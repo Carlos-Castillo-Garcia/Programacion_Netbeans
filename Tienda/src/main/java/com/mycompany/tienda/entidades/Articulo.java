@@ -17,11 +17,21 @@ public class Articulo {
 		private int stock;
                 private ArrayList <Opinion> opiniones;
 		
-		public Articulo() {
+    /**
+     *
+     */
+    public Articulo() {
 			
 		}
 		
-		public Articulo(String codigo, String nombre, float precio, int stock) {
+    /**
+     *
+     * @param codigo
+     * @param nombre
+     * @param precio
+     * @param stock
+     */
+    public Articulo(String codigo, String nombre, float precio, int stock) {
 			setIds(codigo);
 			setNombre(nombre);
 			setPrecio(precio);
@@ -29,43 +39,96 @@ public class Articulo {
 			opiniones = new ArrayList <Opinion>();
 		}
 
-		public String getIds() {
+    /**
+     *
+     * @return
+     */
+    public String getIds() {
 			return ids;
 		}
-		public String getNombre() {
+
+    /**
+     *
+     * @return
+     */
+    public String getNombre() {
 			return nombre;
 		}
-		public float getPrecio() {
+
+    /**
+     *
+     * @return
+     */
+    public float getPrecio() {
 			return precio;
 		}
-		public int getStock() {
+
+    /**
+     *
+     * @return
+     */
+    public int getStock() {
 			return stock;
                 }
-                public ArrayList <Opinion> getOpiniones() {
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList <Opinion> getOpiniones() {
                     return opiniones;
                 }
                 
-		public void setIds(String ids) {
+    /**
+     *
+     * @param ids
+     */
+    public void setIds(String ids) {
 			this.ids = ids;
 		}
-		public void setNombre(String nombre) {
+
+    /**
+     *
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
 			this.nombre = nombre;
 		}
-		public void setPrecio(float precio) {
+
+    /**
+     *
+     * @param precio
+     */
+    public void setPrecio(float precio) {
 			this.precio = precio;
 		}
-		public void setStock(int stock) {
+
+    /**
+     *
+     * @param stock
+     */
+    public void setStock(int stock) {
 			this.stock = stock;
 		}
 		
-		@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 		public String toString() {
 			return "Codigo: " + this.ids 
 				   + "\nNombre: " + this.nombre 
 				   + "\nPrecio: " + this.precio
 				   + "\nStock: " + this.stock + "\n";
 		}
-		@Override 
+ 
+    /**
+     *
+     * @param o
+     * @return
+     */
+    @Override 
 		public boolean equals(Object o) {
 			if(o == null) {
 				return false;
@@ -82,11 +145,20 @@ public class Articulo {
 			}
 		}
 		
-		public boolean disponible(int cantidad) {
+    /**
+     *
+     * @param cantidad
+     * @return
+     */
+    public boolean disponible(int cantidad) {
 			return cantidad <= stock;
 		}
 		
-		public void ajustarstock(int cantidad) {
+    /**
+     *
+     * @param cantidad
+     */
+    public void ajustarstock(int cantidad) {
 			this.stock -= cantidad;
 		}
 		

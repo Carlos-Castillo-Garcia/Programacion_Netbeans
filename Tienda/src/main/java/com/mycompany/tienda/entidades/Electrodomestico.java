@@ -15,9 +15,22 @@ public class Electrodomestico extends Articulo {
     private ClasEn clasificacion;
     private String gama;
     
+    /**
+     *
+     */
     public Electrodomestico(){
         
     }
+
+    /**
+     *
+     * @param cl
+     * @param g
+     * @param co
+     * @param n
+     * @param p
+     * @param s
+     */
     public Electrodomestico(ClasEn cl, String g, String co, String n, float p, int s){
         super(co, n, p, s);
         this.clasificacion = cl;
@@ -51,7 +64,12 @@ public class Electrodomestico extends Articulo {
     public void setGama(String gama) {
         this.gama = gama;
     }
-        @Override
+
+    /**
+     *
+     * @return
+     */
+    @Override
     public String toString (){
         return super.toString() + "Clasificacion energetica: " + clasificacion + "\nGama: " + gama + "\n";
     }

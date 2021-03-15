@@ -10,7 +10,12 @@ import java.util.Scanner;
  */
 public class Metodosalir {
 	
-	public static String salir(Scanner entrada) {
+    /**
+     *
+     * @param entrada
+     * @return
+     */
+    public static String salir(Scanner entrada) {
 		String salir = " ";
 //		System.out.println("¿Desea salir del programa? ( 0 = No ; 1 = Si )");  
 		salir = entrada.nextLine();                                          

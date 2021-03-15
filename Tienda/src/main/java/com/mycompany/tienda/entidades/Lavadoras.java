@@ -19,9 +19,26 @@ public class Lavadoras extends Electrodomestico {
     private int volumen;
     private float consumoA;
     
+    /**
+     *
+     */
     public Lavadoras(){
     }
     
+    /**
+     *
+     * @param ma
+     * @param p
+     * @param mo
+     * @param v
+     * @param ca
+     * @param cl
+     * @param g
+     * @param co
+     * @param n
+     * @param pr
+     * @param s
+     */
     public Lavadoras(Marcas ma, int p, int mo, int v, float ca,ClasEn cl, String g, String co, String n, float pr, int s){
         super(cl, g, co, n, pr, s);
         this.marca = ma;
@@ -101,7 +118,11 @@ public class Lavadoras extends Electrodomestico {
         this.consumoA = consumoA;
     }
     
-            @Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public String toString (){
         return super.toString() + "Marca: "+ marca + "\nPotencia: " + potencia + "\nNumero de Modos: "+ modos+
                 "\nCapacidad: "+volumen+" Litros" +"\nConsumo de Litros: " + consumoA + " Litros.";

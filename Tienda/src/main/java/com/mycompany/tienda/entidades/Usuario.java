@@ -19,8 +19,19 @@ public class Usuario {
     private String email;
     private Permisos permisos;
     
+    /**
+     *  @
+     */
     public Usuario(){
     }
+
+    /**
+     *
+     * @param n
+     * @param pass
+     * @param em
+     * @param permisos
+     */
     public Usuario(String n, String pass, String em, Permisos permisos){
         this.nombre = n;
         this.email = em;
@@ -70,6 +81,13 @@ public class Usuario {
         this.email = email;
     }
     
+    /**
+     *
+     * @param log
+     * @param user
+     * @param pass
+     * @return un boleano que dice si se puede loguear o no.
+     */
     public boolean login(ArrayList <Usuario> log, String user, String pass){
         boolean comprobante = false;
         for(Usuario i: log){
@@ -82,6 +100,11 @@ public class Usuario {
         return comprobante;
     }
     
+    /**
+     *
+     * @param c
+     * @return un boleano que dice si la contraseña esta bien o no.
+     */
     public boolean Compcontrasena (String c){
         boolean comprobante = false;
         comprobante = c.matches(".*[A-Z].*");
@@ -91,6 +114,11 @@ public class Usuario {
         return comprobante;
     }
     
+    /**
+     *
+     * @param n
+     * @return un boleano que dice si el nombre de usuario esta bien o no.
+     */
     public boolean Compnombre(String n){
         boolean comprobante = false;
         if(n.length()>= 6){
@@ -99,6 +127,11 @@ public class Usuario {
         return comprobante;
     }
     
+    /**
+     *
+     * @param e
+     * @return un boleano que dice si el email esta bien o no.
+     */
     public boolean Compemail(String e){
         boolean comprobante = false;
         if(e.matches("[-\\w\\.]+@[a-z]+\\.[a-z]+")){

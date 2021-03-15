@@ -44,6 +44,16 @@ public class Tienda {
         regs.add(new Usuario("admin123", "Contrasena1", "admin123@gmail.com", Permisos.admin));
         inicializarcatalogo(catalogo);
         
+        menulog(scopcion, scstring, templog, regs, catalogo, scint, carro);
+        scstring.close();
+        scint.close();
+        scopcion.close();
+    }
+
+        private static void menulog(Scanner scopcion, Scanner scstring, Usuario templog, ArrayList<Usuario> regs, ArrayList<Articulo> catalogo, Scanner scint, Carrito carro) {
+        int opcion1;
+        String user;
+        String pass;
         do {
             System.out.println("1. Iniciar sesion");
             System.out.println("2. Crear cuenta");
@@ -58,46 +68,7 @@ public class Tienda {
                     pass = scstring.nextLine();
                     
                     if(templog.login(regs, user, pass)){
-                        do{
-                            System.out.println("Ya esta loggeado.");
-                            System.out.println("Esto es el menu de la tienda, tiene diferentes opciones:");
-                            System.out.println("1. Añadir un articulo al catalogo");
-                            System.out.println("2. Comprar un producto.");
-                            System.out.println("3. Comfirmar la compra de los productos.");
-                            System.out.println("4. Salir del la tienda.");
-                            opcion2 = scopcion.nextInt();
-                            switch(opcion2){
-                                case 1:
-                                    System.out.println("Has elegido la opcion de añadir un articulo, para ello va a ser necesario insertar ciertos datos: ");
-                                    addArticuloCatalogo(catalogo, scstring, scint);
-                                    mostrarCatalogo(catalogo);
-                                    break;
-                                case 2:
-                                    System.out.println("Has elegido la opcion de comprar productos, para seleccionar los productos es necesario utilizar"
-                                            + " el codigo del producto\n");
-                                    comprar(catalogo, carro, scstring, scint);
-                                    break;
-                                case 3:
-                                    System.out.println("Has elegido la opcion de confirmas la compra de productos.\n");
-                                    System.out.println(carro.mostarcarrito());
-                                    System.out.println("¿Desea confirmar el carrito? (si)(no)");
-                                    String sctemp = scstring.nextLine();
-                                    if(sctemp.equals("si")) {
-                                        System.out.println(carro.confirmacion());
-                                        modifstock(catalogo, carro);
-                                        mostrarCatalogo(catalogo);
-                                    }else{
-                                        System.out.println("Si desea seguir comprando marque la opcion 2.\n");
-                                    }
-                                    break;
-                                case 4:
-                                    System.out.println("Muchas gracias por utilizar esta tienda.");
-                                    break;
-                                default:
-                                    System.out.println("Has introducido la opcion incorrecta, vuelva a introducirla.");
-                                    break;
-                            }
-                        }while(opcion2 != 4);
+                        menutienda(scopcion, catalogo, scstring, scint, carro);
                     }
                     break;
                 case 2:
@@ -109,9 +80,49 @@ public class Tienda {
             }   
             
         }while(opcion1 != 3);
-        scstring.close();
-        scint.close();
-        scopcion.close();
+    }
+        private static void menutienda(Scanner scopcion, ArrayList<Articulo> catalogo, Scanner scstring, Scanner scint, Carrito carro) {
+        int opcion2;
+        do{
+            System.out.println("Ya esta loggeado.");
+            System.out.println("Esto es el menu de la tienda, tiene diferentes opciones:");
+            System.out.println("1. Añadir un articulo al catalogo");
+            System.out.println("2. Comprar un producto.");
+            System.out.println("3. Comfirmar la compra de los productos.");
+            System.out.println("4. Salir del la tienda.");
+            opcion2 = scopcion.nextInt();
+            switch(opcion2){
+                case 1:
+                    System.out.println("Has elegido la opcion de añadir un articulo, para ello va a ser necesario insertar ciertos datos: ");
+                    addArticuloCatalogo(catalogo, scstring, scint);
+                    mostrarCatalogo(catalogo);
+                    break;
+                case 2:
+                    System.out.println("Has elegido la opcion de comprar productos, para seleccionar los productos es necesario utilizar"
+                            + " el codigo del producto\n");
+                    comprar(catalogo, carro, scstring, scint);
+                    break;
+                case 3:
+                    System.out.println("Has elegido la opcion de confirmas la compra de productos.\n");
+                    System.out.println(carro.mostarcarrito());
+                    System.out.println("¿Desea confirmar el carrito? (si)(no)");
+                    String sctemp = scstring.nextLine();
+                    if(sctemp.equals("si")) {
+                        System.out.println(carro.confirmacion());
+                        modifstock(catalogo, carro);
+                        mostrarCatalogo(catalogo);
+                    }else{
+                        System.out.println("Si desea seguir comprando marque la opcion 2.\n");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Muchas gracias por utilizar esta tienda.");
+                    break;
+                default:
+                    System.out.println("Has introducido la opcion incorrecta, vuelva a introducirla.");
+                    break;
+            }
+        }while(opcion2 != 4);
     }
 	private static void inicializarcatalogo(ArrayList <Articulo> c) {
 		c.add(new Articulo("0001", "Monitor", 200.00F, 10));

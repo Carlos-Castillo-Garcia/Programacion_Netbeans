@@ -13,16 +13,41 @@ import com.mycompany.tienda.enumerados.Puntuacion;
  */
 public class Opinion {
     Usuario user;
+
+    /**
+     *
+     */
     public Puntuacion punt;
+
+    /**
+     *
+     */
     public String coment;
+
+    /**
+     *
+     */
     public int like;
+
+    /**
+     *
+     */
     public int dislike;
     
+    /**
+     *
+     */
     public Opinion(){
         like = 0;
         dislike = 0;
     }
     
+    /**
+     *
+     * @param user
+     * @param punt
+     * @param coment
+     */
     public Opinion(Usuario user, Puntuacion punt, String coment){
         this.coment = coment;
         this.like = 0;
@@ -31,13 +56,26 @@ public class Opinion {
         this.user = user;
     }
     
+    /**
+     *
+     * @param like
+     */
     public void darlike(int like){
         like++;
     }
     
+    /**
+     *
+     * @param dislike
+     */
     public void dardislike(int dislike){
         dislike++;
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

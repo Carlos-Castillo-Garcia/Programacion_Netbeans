@@ -5,6 +5,7 @@
  */
 package com.mycompany.tienda.entidades;
 
+import com.mycompany.tienda.enumerados.Permisos;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class UsuarioTest {
     
+    /**
+     *
+     */
     public UsuarioTest() {
     }
 
@@ -23,7 +27,7 @@ public class UsuarioTest {
     @Test
     public void testCompcontrasena() {
         String c = "CONTRASENA";
-        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com");
+        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com", Permisos.admin);
         boolean expResult = true;
         boolean result = carlos.Compcontrasena(c);
         assertEquals(expResult, result);
@@ -35,7 +39,7 @@ public class UsuarioTest {
     @Test
     public void testCompnombre() {
         String n = "hola";
-        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com");
+        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com", Permisos.admin);
         boolean expResult = false;
         boolean result = carlos.Compnombre(n);
         assertEquals(expResult, result);
@@ -47,7 +51,7 @@ public class UsuarioTest {
     @Test
     public void testCompemail() {
         String e = "hola@email.com";
-        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com");
+        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com", Permisos.admin);
         boolean expResult = true;
         boolean result = carlos.Compemail(e);
         assertEquals(expResult, result);
