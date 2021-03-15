@@ -41,7 +41,7 @@ public class Opinion {
      *
      * @param like
      */
-    public void darlike(int like){
+    public void darlike(){
         like++;
     }
     
@@ -49,7 +49,7 @@ public class Opinion {
      *
      * @param dislike
      */
-    public void dardislike(int dislike){
+    public void dardislike(){
         dislike++;
     }
 

@@ -35,25 +35,17 @@ public class Tienda {
         
         int opcion1 = 0;
         int opcion2 = 0;
+        int oplike = 0;
         String user;
         String pass;
         Carrito carro = new Carrito();
         Usuario templog = new Usuario();
+        Opinion temp = new Opinion();
         ArrayList <Articulo> catalogo = new ArrayList <Articulo>();
         ArrayList <Usuario> regs = new ArrayList <Usuario>();
-        regs.add(new Usuario("admin123", "Contrasena1", "admin123@gmail.com", Permisos.admin));
+        regs.add(new Usuario("admin123", "Contrasena1", "admin123@gmail.com"));
         inicializarcatalogo(catalogo);
         
-        menulog(scopcion, scstring, templog, regs, catalogo, scint, carro);
-        scstring.close();
-        scint.close();
-        scopcion.close();
-    }
-
-        private static void menulog(Scanner scopcion, Scanner scstring, Usuario templog, ArrayList<Usuario> regs, ArrayList<Articulo> catalogo, Scanner scint, Carrito carro) {
-        int opcion1;
-        String user;
-        String pass;
         do {
             System.out.println("1. Iniciar sesion");
             System.out.println("2. Crear cuenta");
@@ -68,7 +60,51 @@ public class Tienda {
                     pass = scstring.nextLine();
                     
                     if(templog.login(regs, user, pass)){
-                        menutienda(scopcion, catalogo, scstring, scint, carro);
+                        
+                        do{
+                            System.out.println("Ya esta loggeado.");
+                            System.out.println("Esto es el menu de la tienda, tiene diferentes opciones:");
+                            System.out.println("1. Añadir un articulo al catalogo");
+                            System.out.println("2. Comprar un producto.");
+                            System.out.println("3. Comfirmar la compra de los productos.");
+                            System.out.println("4. Dar opinion.");
+                            System.out.println("5. Salir del la tienda.");
+                            opcion2 = scopcion.nextInt();
+                            switch(opcion2){
+                                case 1:
+                                    System.out.println("Has elegido la opcion de añadir un articulo, para ello va a ser necesario insertar ciertos datos: ");
+                                    addArticuloCatalogo(catalogo, scstring, scint);
+                                    mostrarCatalogo(catalogo);
+                                    break;
+                                case 2:
+                                    System.out.println("Has elegido la opcion de comprar productos, para seleccionar los productos es necesario utilizar"
+                                            + " el codigo del producto\n");
+                                    comprar(catalogo, carro, scstring, scint);
+                                    break;
+                                case 3:
+                                    System.out.println("Has elegido la opcion de confirmas la compra de productos.\n");
+                                    System.out.println(carro.mostarcarrito());
+                                    System.out.println("¿Desea confirmar el carrito? (si)(no)");
+                                    String sctemp = scstring.nextLine();
+                                    if(sctemp.equals("si")) {
+                                        System.out.println(carro.confirmacion());
+                                        modifstock(catalogo, carro);
+                                        mostrarCatalogo(catalogo);
+                                    }else{
+                                        System.out.println("Si desea seguir comprando marque la opcion 2.\n");
+                                    }
+                                    break;
+                                case 4:
+                                    giveop(catalogo, scstring, scopcion);
+                                    break;
+                                case 5:
+                                    System.out.println("Muchas gracias por utilizar esta tienda.");
+                                    break;
+                                default:
+                                    System.out.println("Has introducido la opcion incorrecta, vuelva a introducirla.");
+                                    break;
+                            }
+                        }while(opcion2 != 4);
                     }
                     break;
                 case 2:
@@ -80,49 +116,9 @@ public class Tienda {
             }   
             
         }while(opcion1 != 3);
-    }
-        private static void menutienda(Scanner scopcion, ArrayList<Articulo> catalogo, Scanner scstring, Scanner scint, Carrito carro) {
-        int opcion2;
-        do{
-            System.out.println("Ya esta loggeado.");
-            System.out.println("Esto es el menu de la tienda, tiene diferentes opciones:");
-            System.out.println("1. Añadir un articulo al catalogo");
-            System.out.println("2. Comprar un producto.");
-            System.out.println("3. Comfirmar la compra de los productos.");
-            System.out.println("4. Salir del la tienda.");
-            opcion2 = scopcion.nextInt();
-            switch(opcion2){
-                case 1:
-                    System.out.println("Has elegido la opcion de añadir un articulo, para ello va a ser necesario insertar ciertos datos: ");
-                    addArticuloCatalogo(catalogo, scstring, scint);
-                    mostrarCatalogo(catalogo);
-                    break;
-                case 2:
-                    System.out.println("Has elegido la opcion de comprar productos, para seleccionar los productos es necesario utilizar"
-                            + " el codigo del producto\n");
-                    comprar(catalogo, carro, scstring, scint);
-                    break;
-                case 3:
-                    System.out.println("Has elegido la opcion de confirmas la compra de productos.\n");
-                    System.out.println(carro.mostarcarrito());
-                    System.out.println("¿Desea confirmar el carrito? (si)(no)");
-                    String sctemp = scstring.nextLine();
-                    if(sctemp.equals("si")) {
-                        System.out.println(carro.confirmacion());
-                        modifstock(catalogo, carro);
-                        mostrarCatalogo(catalogo);
-                    }else{
-                        System.out.println("Si desea seguir comprando marque la opcion 2.\n");
-                    }
-                    break;
-                case 4:
-                    System.out.println("Muchas gracias por utilizar esta tienda.");
-                    break;
-                default:
-                    System.out.println("Has introducido la opcion incorrecta, vuelva a introducirla.");
-                    break;
-            }
-        }while(opcion2 != 4);
+        scstring.close();
+        scint.close();
+        scopcion.close();
     }
 	private static void inicializarcatalogo(ArrayList <Articulo> c) {
 		c.add(new Articulo("0001", "Monitor", 200.00F, 10));
@@ -286,9 +282,10 @@ public class Tienda {
                 }
             } while (salida != 1);
         }
-        private static void giveop(ArrayList<Articulo> c, Usuario user, Scanner scstring, Scanner scopcion){
+        private static void giveop(ArrayList<Articulo> c, Scanner scstring, Scanner scopcion){
             Opinion temp = new Opinion();
             int opcion = 0;
+            int oplike = 0;
             String codigo;
             int cont = 0;
             
@@ -298,7 +295,7 @@ public class Tienda {
             for(Articulo i: c){
                 if(i.getIds().equals(codigo)){
                     do{
-                        
+
                         System.out.println("Estas son las puntuaciones a dar: ");
                         System.out.println("1. " + Puntuacion.excelente);
                         System.out.println("2. " + Puntuacion.muybueno);
@@ -329,10 +326,28 @@ public class Tienda {
                             default:
                                 System.out.println("La opcion no esta disponible.");
                         }
-                    }while(opcion != 6);
+                    }while(opcion != 1 || opcion != 6);
                     System.out.println("Escriba su opinion:");
                     temp.coment = scstring.nextLine();
                     i.getOpiniones().add(temp);
+                    System.out.println("¿Desea dar like o dislike?");
+                    System.out.println("1. Like.");
+                    System.out.println("2. Dislike.");
+                    System.out.println("3. Ninguna.");
+                    oplike = scopcion.nextInt();
+                            do{
+                                switch(oplike){
+                                    case 1:
+                                        temp.darlike();
+                                        break;
+                                    case 2:
+                                        temp.dardislike();
+                                        break;
+                                    default:
+                                        System.out.println("Has introducido la opcion incorrecta, vuelva a introducirla.");
+                                        break;
+                                }
+                            }while(oplike!=3);
                 }else{
                     cont++;
                 }

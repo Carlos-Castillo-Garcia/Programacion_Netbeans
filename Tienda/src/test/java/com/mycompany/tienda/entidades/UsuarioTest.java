@@ -27,7 +27,7 @@ public class UsuarioTest {
     @Test
     public void testCompcontrasena() {
         String c = "CONTRASENA";
-        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com", Permisos.admin);
+        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com");
         boolean expResult = true;
         boolean result = carlos.Compcontrasena(c);
         assertEquals(expResult, result);
@@ -39,7 +39,7 @@ public class UsuarioTest {
     @Test
     public void testCompnombre() {
         String n = "hola";
-        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com", Permisos.admin);
+        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com");
         boolean expResult = false;
         boolean result = carlos.Compnombre(n);
         assertEquals(expResult, result);
@@ -51,7 +51,7 @@ public class UsuarioTest {
     @Test
     public void testCompemail() {
         String e = "hola@email.com";
-        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com", Permisos.admin);
+        Usuario carlos = new Usuario("hola", "CONTRASENA", "hola@email.com");
         boolean expResult = true;
         boolean result = carlos.Compemail(e);
         assertEquals(expResult, result);

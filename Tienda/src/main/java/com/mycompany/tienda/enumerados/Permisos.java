@@ -10,5 +10,5 @@ package com.mycompany.tienda.enumerados;
  * @author PORTATIL 2
  */
 public enum Permisos {
-    admin, user, adduser, mod;
+    admin, user;
 }

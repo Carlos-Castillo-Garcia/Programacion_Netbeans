@@ -23,6 +23,7 @@ public class Usuario {
      *  @
      */
     public Usuario(){
+        this.permisos = Permisos.user;
     }
 
     /**
@@ -32,11 +33,11 @@ public class Usuario {
      * @param em
      * @param permisos
      */
-    public Usuario(String n, String pass, String em, Permisos permisos){
+    public Usuario(String n, String pass, String em){
         this.nombre = n;
         this.email = em;
         this.passwd = pass;
-        this.permisos = permisos;
+        this.permisos = Permisos.user;
     }
 
     /**
