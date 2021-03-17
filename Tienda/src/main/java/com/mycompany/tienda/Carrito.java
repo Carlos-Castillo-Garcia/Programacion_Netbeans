@@ -30,19 +30,20 @@ public class Carrito {
      *
      */
     public Carrito() {
-			pedido = new ArrayList <ArticuloCarrito>();	
-			total = 0;
-			estado = PENDIENTE;
-		}
-		private float calculaTotal() {
-			float acumulado = 0;
-			
-			for(ArticuloCarrito ac: this.pedido) {
-				acumulado = ac.elemento.getPrecio()*ac.cantidad;
-			}
-			
-			return acumulado;
-		}
+        pedido = new ArrayList <ArticuloCarrito>();
+        total = 0;
+        estado = PENDIENTE;
+    }
+    
+    private float calculaTotal() {
+        float acumulado = 0;
+        
+        for(ArticuloCarrito ac: this.pedido) {
+            acumulado = ac.elemento.getPrecio()*ac.cantidad;
+        }
+        
+        return acumulado;
+    }
 
     /**
      *

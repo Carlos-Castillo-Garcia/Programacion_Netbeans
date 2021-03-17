@@ -43,6 +43,11 @@ public class Ropa extends Articulo {
         return talla;
     }
 
+    /**
+     *
+     * @param codprom
+     */
+    @Override
     public void applypromo(String codprom){
         if(codprom.equals("ROPAPROMO")){
             this.setPrecio(((float)this.getPrecio()*0.8));
