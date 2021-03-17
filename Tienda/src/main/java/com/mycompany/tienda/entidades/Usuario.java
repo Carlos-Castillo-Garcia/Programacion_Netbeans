@@ -83,10 +83,10 @@ public class Usuario {
     }
     
     /**
-     *
-     * @param log
-     * @param user
-     * @param pass
+     * Metodo para el login, comprueba el usuario y contraseña que se introducen.
+     * @param log un arraylist para el guardado de datos.
+     * @param user el nombre de usuario a comparar
+     * @param pass la contraseña asociada al nombre de usuario
      * @return un boleano que dice si se puede loguear o no.
      */
     public boolean login(ArrayList <Usuario> log, String user, String pass){
@@ -102,8 +102,8 @@ public class Usuario {
     }
     
     /**
-     *
-     * @param c
+     * Metodo para evitar introduccion de caracteres raros en la contraseña.
+     * @param c la contraseña que se quiere comprobar.
      * @return un boleano que dice si la contraseña esta bien o no.
      */
     public boolean Compcontrasena (String c){
@@ -116,8 +116,8 @@ public class Usuario {
     }
     
     /**
-     *
-     * @param n
+     * Metodo para evitar introduccion de caracteres raros en el nombre de ususario.
+     * @param n el nombre de usuario que se quiere comprobar.
      * @return un boleano que dice si el nombre de usuario esta bien o no.
      */
     public boolean Compnombre(String n){
@@ -129,8 +129,8 @@ public class Usuario {
     }
     
     /**
-     *
-     * @param e
+     * Metodo para evitar introduccion de caracteres raros en el email.
+     * @param e la direccion de correo que se quiere comprobar.
      * @return un boleano que dice si el email esta bien o no.
      */
     public boolean Compemail(String e){

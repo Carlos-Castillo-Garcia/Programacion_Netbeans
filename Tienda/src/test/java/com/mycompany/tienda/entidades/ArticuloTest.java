@@ -27,7 +27,7 @@ public class ArticuloTest {
     public void testEquals() {
         System.out.println("equals");
         Object o = null;
-        Articulo instance = new Articulo();
+        Articulo instance = new Ropa();
         boolean expResult = false;
         boolean result = instance.equals(o);
         assertEquals(expResult, result);
@@ -42,7 +42,7 @@ public class ArticuloTest {
     public void testDisponible() {
         System.out.println("disponible");
         int cantidad = 0;
-        Articulo instance = new Articulo();
+        Articulo instance = new Ropa();
         boolean expResult = false;
         boolean result = instance.disponible(cantidad);
         assertEquals(expResult, result);
@@ -57,7 +57,7 @@ public class ArticuloTest {
     public void testAjustarstock() {
         System.out.println("ajustarstock");
         int cantidad = 0;
-        Articulo instance = new Articulo();
+        Articulo instance = new Ropa();
         instance.ajustarstock(cantidad);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

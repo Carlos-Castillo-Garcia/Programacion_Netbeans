@@ -3,19 +3,20 @@
  */
 package com.mycompany.tienda.entidades;
 
+import com.mycompany.tienda.enumerados.Puntuacion;
 import java.util.ArrayList;
 
 /**
  * @author PORTATIL 2
  *
  */
-public class Articulo {
+public abstract class Articulo {
 
-		private String ids;
-		private String nombre;
-		private float precio;
-		private int stock;
-                private ArrayList <Opinion> opiniones;
+    private String ids;
+    private String nombre;
+    private float precio;
+    private int stock;
+    private ArrayList <Opinion> opiniones;
 		
     /**
      *
@@ -32,13 +33,14 @@ public class Articulo {
      * @param stock
      */
     public Articulo(String codigo, String nombre, float precio, int stock) {
-			setIds(codigo);
-			setNombre(nombre);
-			setPrecio(precio);
-			setStock(stock);
-			opiniones = new ArrayList <Opinion>();
-		}
-
+        setIds(codigo);
+        setNombre(nombre);
+        setPrecio(precio);
+        setStock(stock);
+        opiniones = new ArrayList <Opinion>();
+    }
+    
+    public abstract void applypromo(String codigopromo);
     /**
      *
      * @return
@@ -116,12 +118,15 @@ public class Articulo {
      * @return
      */
     @Override
-		public String toString() {
-			return "Codigo: " + this.ids 
-				   + "\nNombre: " + this.nombre 
-				   + "\nPrecio: " + this.precio
-				   + "\nStock: " + this.stock + "\n";
-		}
+    public String toString() {
+            return "Codigo: " + this.ids 
+                       + "\nNombre: " + this.nombre 
+                       + "\nPrecio: " + this.precio
+                       + "\nStock: " + this.stock 
+                       + "\nOpinion: "+ this.opiniones
+                       + "\nMedia de opiniones: "+ this.mediaop()
+                       + "\n";
+    }
  
     /**
      *
@@ -129,21 +134,21 @@ public class Articulo {
      * @return
      */
     @Override 
-		public boolean equals(Object o) {
-			if(o == null) {
-				return false;
-			}
-			if(this.getClass() != o.getClass()) {
-				return false;
-			}else {
-				Articulo a = (Articulo) o;
-				if(this.ids.equals(a.getIds())) {
-					return true;
-				}else {
-					return false;
-				}
-			}
-		}
+    public boolean equals(Object o) {
+            if(o == null) {
+                    return false;
+            }
+            if(this.getClass() != o.getClass()) {
+                    return false;
+            }else {
+                    Articulo a = (Articulo) o;
+                    if(this.ids.equals(a.getIds())) {
+                            return true;
+                    }else {
+                            return false;
+                    }
+            }
+    }
 		
     /**
      *
@@ -161,7 +166,28 @@ public class Articulo {
     public void ajustarstock(int cantidad) {
 			this.stock -= cantidad;
 		}
-		
+    private float mediaop(){
+        float media = 0;
+        for(Opinion o: opiniones){
+            if(o.punt == Puntuacion.excelente){
+                media = media +5;
+            }
+            if(o.punt == Puntuacion.muybueno){
+                media = media +4;
+            }
+            if(o.punt == Puntuacion.bueno){
+                media = media +3;
+            }
+            if(o.punt == Puntuacion.malo){
+                media = media +2;
+            }
+            if(o.punt == Puntuacion.terrible){
+                media = media +1;
+            }
+        }
+        media = media/opiniones.size();
+        return media;
+    }
 }
 
 

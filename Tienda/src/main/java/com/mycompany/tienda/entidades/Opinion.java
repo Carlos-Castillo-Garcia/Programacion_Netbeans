@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +12,7 @@ import com.mycompany.tienda.enumerados.Puntuacion;
  *
  * @author PORTATIL 2
  */
-public class Opinion {
+public class Opinion implements Comparable<Opinion>{
     Usuario user;
     public Puntuacion punt;
     public String coment;
@@ -52,7 +53,7 @@ public class Opinion {
     public void dardislike(){
         dislike++;
     }
-
+    
     /**
      *
      * @return
@@ -60,15 +61,63 @@ public class Opinion {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Usuario: ")
-                .append(this.user)
-                .append("\nPuntuación: ")
+        sb.append("\n   Comentario: ")
+                .append(this.coment)
+                .append("\n Puntuación: ")
                 .append(this.punt)
-                .append("\nLikes: ")
+                .append("\n Likes: ")
                 .append(this.like)
-                .append("Dislikes: ")
+                .append("\n Dislikes: ")
                 .append(this.dislike)
                 .append("\n");
         return sb.toString();
     }
+
+    @Override
+    public int compareTo(Opinion o) {
+        int valorp = 0;
+        int valoro = 0;
+        if(o.punt == Puntuacion.excelente){
+            valorp = 5;
+        }
+        if(o.punt == Puntuacion.muybueno){
+            valorp = 4;
+        }
+        if(o.punt == Puntuacion.bueno){
+            valorp = 3;
+        }
+        if(o.punt == Puntuacion.malo){
+            valorp = 2;
+        }
+        if(o.punt == Puntuacion.terrible){
+            valorp = 1;
+        }
+        
+        if(punt == Puntuacion.excelente){
+            valoro = 5;
+        }
+        if(punt == Puntuacion.muybueno){
+            valoro = 4;
+        }
+        if(punt == Puntuacion.bueno){
+            valoro = 3;
+        }
+        if(punt == Puntuacion.malo){
+            valoro = 2;
+        }
+        if(punt == Puntuacion.terrible){
+            valoro = 1;
+        }
+
+        if(valoro == valorp){
+            return 0;
+        }else if(valoro > valorp){
+            return 1;
+        }else{
+            return -1;
+        }
+    }
+
+
 }
+

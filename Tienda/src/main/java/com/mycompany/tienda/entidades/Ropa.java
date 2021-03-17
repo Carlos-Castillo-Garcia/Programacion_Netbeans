@@ -37,11 +37,23 @@ public class Ropa extends Articulo {
     }
 
     /**
+     * @return the talla
+     */
+    public Tallas getTalla() {
+        return talla;
+    }
+
+    public void applypromo(String codprom){
+        if(codprom.equals("ROPAPROMO")){
+            this.setPrecio(((float)this.getPrecio()*0.8));
+        }
+    }
+    /**
      *
      * @return
      */
     @Override
     public String toString (){
-        return super.toString() + "Color: " + color + "\nTalla: " + talla + "\n";
+        return super.toString() + "Color: " + color + "\nTalla: " + getTalla() + "\n";
     }
 }
