@@ -137,18 +137,18 @@ public class Tienda {
         }while(opcion2 != 6);
     }
         private static void Confirmacion(Carrito carro, Scanner scstring, ArrayList<Articulo> catalogo) {
-        System.out.println("Has elegido la opcion de confirmas la compra de productos.\n");
-        System.out.println(carro.mostarcarrito());
-        System.out.println("¿Desea confirmar el carrito? (si)(no)");
-        String sctemp = scstring.nextLine();
-        if(sctemp.equals("si")) {
-            System.out.println(carro.confirmacion());
-            modifstock(catalogo, carro);
-            mostrarCatalogo(catalogo);
-        }else{
-            System.out.println("Si desea seguir comprando marque la opcion 2.\n");
+            System.out.println("Has elegido la opcion de confirmas la compra de productos.\n");
+            System.out.println(carro.mostarcarrito());
+            System.out.println("¿Desea confirmar el carrito? (si)(no)");
+            String sctemp = scstring.nextLine();
+            if(sctemp.equals("si")) {
+                System.out.println(carro.confirmacion());
+                modifstock(catalogo, carro);
+                mostrarCatalogo(catalogo);
+            }else{
+                System.out.println("Si desea seguir comprando marque la opcion 2.\n");
+            }
         }
-    }
         private static void inicializarcatalogo(ArrayList <Articulo> c) {
             c.add(new Tecnologia("T0001", "Monitor", 200.00F, 10, Tipostec.componentes));
             c.add(new Tecnologia("T0002", "Teclado", 30.00F, 40, Tipostec.ordenadores));
@@ -265,6 +265,7 @@ public class Tienda {
 	private static void comprar(ArrayList<Articulo> c, Carrito ca, Scanner sctexto,Scanner scint){
 		String opsalida = " ";
 		Articulo insertar = null; 
+                String codpromo = null;
 		mostrarCatalogo(c);
 		int m = 0;
 		do {
@@ -276,8 +277,10 @@ public class Tienda {
                                     System.out.println("Introduzca la cantidad del producto que desea comprar: ");
                                     int tempcantidad = scint.nextInt();
                                     if(insertar.disponible(tempcantidad)) {
+                                            System.out.println("Si tiene codigo de promocion introduzcalo ahora: ");
+                                            codpromo = sctexto.nextLine();
                                             System.out.println("\nEl articulo se a introducido al carrito.");
-                                            ca.addArticulo(insertar, tempcantidad);
+                                            ca.addArticulo(insertar, tempcantidad, codpromo);
                                             m = 1;
                                     }else{
                                             System.out.println("No hay tantas existencias, porfavor pida una cantidad distinta.");

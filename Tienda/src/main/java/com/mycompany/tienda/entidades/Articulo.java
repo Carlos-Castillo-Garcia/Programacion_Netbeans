@@ -166,6 +166,7 @@ public abstract class Articulo {
     public void ajustarstock(int cantidad) {
 			this.stock -= cantidad;
 		}
+    
     private float mediaop(){
         float media = 0;
         for(Opinion o: opiniones){
@@ -188,6 +189,7 @@ public abstract class Articulo {
         media = media/opiniones.size();
         return media;
     }
+    
 }
 
 

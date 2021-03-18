@@ -35,11 +35,18 @@ public class Carrito {
         estado = PENDIENTE;
     }
     
-    private float calculaTotal() {
+    private float calculaTotal(String codpromo) {
         float acumulado = 0;
-        
+
         for(ArticuloCarrito ac: this.pedido) {
-            acumulado = ac.elemento.getPrecio()*ac.cantidad;
+            if(ac.elemento.getIds().charAt(0) == 'R'){
+                ac.elemento.applypromo(codpromo);
+            }else if(ac.elemento.getIds().charAt(0) == 'E'){
+                ac.elemento.applypromo(codpromo);
+            }else if(ac.elemento.getIds().charAt(0) == 'T'){
+                ac.elemento.applypromo(codpromo);
+            }
+           acumulado = ac.elemento.getPrecio()*ac.cantidad;
         }
         
         return acumulado;
@@ -50,7 +57,7 @@ public class Carrito {
      * @param articulo
      * @param cantidad
      */
-    public void addArticulo(Articulo articulo, int cantidad) {
+    public void addArticulo(Articulo articulo, int cantidad,String codpromo) {
 			boolean found = false;
 			
 			for(ArticuloCarrito ac : pedido) {
@@ -63,7 +70,7 @@ public class Carrito {
 				ArticuloCarrito nuevo = new ArticuloCarrito(articulo, cantidad);
 				pedido.add(nuevo);
 			}
-			this.total = calculaTotal();
+			this.total = calculaTotal(codpromo);
 		}
 
     /**
@@ -77,7 +84,7 @@ public class Carrito {
 			for(ArticuloCarrito ac: pedido) {
 				cs.append(ac);
 			}
-			cs.append("El precio total es: ").append(this.calculaTotal());
+			cs.append("El precio total es: ").append(total);
 			if(estado) {
 				cs.append("\nEl carrito esta confirmado.\n");
 			}else {

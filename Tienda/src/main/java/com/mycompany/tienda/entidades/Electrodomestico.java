@@ -6,12 +6,15 @@
 package com.mycompany.tienda.entidades;
 
 import com.mycompany.tienda.enumerados.ClasEn;
+import com.mycompany.tienda.interfaces.Reciclable;
 
 /**
  *
  * @author PORTATIL 2
+ * solo es reciclable es si su clase energetica es A o mejor y si su año de fabricacion es posterior a 5 años.
+ * Descuento si se recicla es de un 30%.
  */
-public class Electrodomestico extends Articulo {
+public class Electrodomestico extends Articulo implements Reciclable{
     private ClasEn clasificacion;
     private String gama;
     
@@ -77,10 +80,27 @@ public class Electrodomestico extends Articulo {
     @Override
     public void applypromo(String codprom) {
         if(codprom.equals("SINIVA")){
-            this.setPrecio(((float)this.getPrecio()*0.79));
+            this.setPrecio(((float)this.getPrecio()*(float)0.79));
         }
         if(codprom.equals("ELECPROMO")){
-            this.setPrecio(((float)this.getPrecio()*0.9));
+            this.setPrecio((float)this.getPrecio()*(float)0.8);
         }
+    }
+
+    @Override
+//    public boolean esReciclable() {
+//        boolean conf = true;
+//        if(this.vezreciclada > 2){
+//            conf = false;
+//        }else{
+//            conf = true;
+//            this.vezreciclada++;
+//        }
+//        return conf;
+//    }
+
+    @Override
+    public void applyDiscount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

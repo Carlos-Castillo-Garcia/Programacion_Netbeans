@@ -6,14 +6,16 @@
 package com.mycompany.tienda.entidades;
 
 import com.mycompany.tienda.enumerados.Tallas;
+import com.mycompany.tienda.interfaces.Reciclable;
 
 /**
  *
  * @author PORTATIL 2
  */
-public class Ropa extends Articulo {
+public class Ropa extends Articulo implements Reciclable{
     String color;
     Tallas talla;
+    int vezreciclada = 0;
     
     /**
      *
@@ -50,7 +52,7 @@ public class Ropa extends Articulo {
     @Override
     public void applypromo(String codprom){
         if(codprom.equals("ROPAPROMO")){
-            this.setPrecio(((float)this.getPrecio()*0.8));
+            this.setPrecio(((float)this.getPrecio()*(float)0.8));
         }
     }
     /**
@@ -60,5 +62,25 @@ public class Ropa extends Articulo {
     @Override
     public String toString (){
         return super.toString() + "Color: " + color + "\nTalla: " + getTalla() + "\n";
+    }
+
+    @Override
+    public boolean esReciclable() {
+        boolean conf = true;
+        if(this.vezreciclada > 2){
+            conf = false;
+        }else{
+            conf = true;
+            this.vezreciclada++;
+        }
+        return conf;
+    }
+
+    @Override
+    public void applyDiscount() {
+        //TODO
+        //LA ropa reciclada tiene un 50% de descuento 
+        //Ademas de aplicar el descuento modifica el atributo de asido reciclada.
+         this.setPrecio((float)this.getPrecio()*(float)0.50);
     }
 }
