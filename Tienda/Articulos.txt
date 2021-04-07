@@ -1,0 +1,5 @@
+rojo, M, R0001, jersei, 15.00F, 35
+rojo, M, R0002, camiseta, 25.00F, 345
+rojo, M, R0003, pantalones, 14.00F, 98
+rojo, M, R0004, gorro, 17.00F, 32
+rojo, M, R0005, jersei, 29.00F, 15

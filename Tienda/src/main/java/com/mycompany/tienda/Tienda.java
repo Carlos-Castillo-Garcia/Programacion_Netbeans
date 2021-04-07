@@ -18,6 +18,12 @@ import com.mycompany.tienda.entidades.Usuario;
 import com.mycompany.tienda.enumerados.Puntuacion;
 import com.mycompany.tienda.enumerados.Tallas;
 import com.mycompany.tienda.enumerados.Tipostec;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 /**
  * @author PORTATIL 2
@@ -88,7 +94,9 @@ public class Tienda {
             System.out.println("3. Comfirmar la compra de los productos.");
             System.out.println("4. Dar opinion.");
             System.out.println("5. Ver opinion.");
-            System.out.println("6. Salir del la tienda.");
+            System.out.println("6. Leer archivo.");
+            System.out.println("7. Ingresar arhivo.");
+            System.out.println("8. Salir del la tienda.");
             opcion2 = scopcion.nextInt();
             switch(opcion2){
                 case 1:
@@ -99,17 +107,17 @@ public class Tienda {
                     System.out.println("4. Ninguno");
                     opcion3 = scint.nextInt();
                     do{
-                    switch(opcion3){
-                        case 1:
-                                addropaCatalogo(catalogo, scstring, scint);
-                            break;
-                        case 2:
-                                addelectCatalogo(catalogo, scstring, scint);
-                            break;
-                        case 3:
-                                addticCatalogo(catalogo, scstring, scint);
-                            break;
-                    }
+                        switch(opcion3){
+                            case 1:
+                                    addropaCatalogo(catalogo, scstring, scint);
+                                break;
+                            case 2:
+                                    addelectCatalogo(catalogo, scstring, scint);
+                                break;
+                            case 3:
+                                    addticCatalogo(catalogo, scstring, scint);
+                                break;
+                        }
                     }while(opcion3 != 1 && opcion3 != 4);
                     mostrarCatalogo(catalogo);
                     break;
@@ -128,6 +136,11 @@ public class Tienda {
                     seeop(catalogo, scstring, scopcion);
                     break;
                 case 6:
+                    loadArticuloFromFile();
+                    break;
+                case 7:
+                    break;
+                case 8:
                     System.out.println("Muchas gracias por utilizar esta tienda.");
                     break;
                 default:
@@ -479,6 +492,34 @@ public class Tienda {
                                     break;
                             }
                         }while(oplike!=1&&oplike!=3);
+                    }
+                }
+            }
+        }
+        private static void loadArticuloFromFile(){
+            File fichero = null;
+            FileReader lector = null;
+            BufferedReader buffer = null;
+            
+            try{
+
+                fichero = new File("Articulos.txt");
+                lector = new FileReader(fichero);
+                buffer = new BufferedReader(lector);
+                String linea = null;
+                while((linea = buffer.readLine()) != null){
+                    System.out.println(linea);
+                }
+            }catch (FileNotFoundException fnfe){
+                fnfe.printStackTrace();
+            }catch (IOException ioe){
+                ioe.printStackTrace();
+            }finally{
+                if(buffer != null){
+                    try{
+                        buffer.close();
+                    }catch (IOException ioe){
+                        ioe.printStackTrace();
                     }
                 }
             }

@@ -14,7 +14,7 @@ import com.mycompany.tienda.interfaces.Reciclable;
  * solo es reciclable es si su clase energetica es A o mejor y si su año de fabricacion es posterior a 5 años.
  * Descuento si se recicla es de un 30%.
  */
-public class Electrodomestico extends Articulo implements Reciclable{
+public class Electrodomestico extends Articulo{
     private ClasEn clasificacion;
     private String gama;
     
@@ -87,7 +87,7 @@ public class Electrodomestico extends Articulo implements Reciclable{
         }
     }
 
-    @Override
+//    @Override
 //    public boolean esReciclable() {
 //        boolean conf = true;
 //        if(this.vezreciclada > 2){
@@ -99,8 +99,4 @@ public class Electrodomestico extends Articulo implements Reciclable{
 //        return conf;
 //    }
 
-    @Override
-    public void applyDiscount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
