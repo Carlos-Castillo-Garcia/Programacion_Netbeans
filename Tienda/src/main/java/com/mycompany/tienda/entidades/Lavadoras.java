@@ -127,4 +127,10 @@ public class Lavadoras extends Electrodomestico {
         return super.toString() + "Marca: "+ marca + "\nPotencia: " + potencia + "\nNumero de Modos: "+ modos+
                 "\nCapacidad: "+volumen+" Litros" +"\nConsumo de Litros: " + consumoA + " Litros.";
     }
+    
+    public String  toStringFile(){
+        return marca + "," + potencia + "," + modos + "," + volumen + "," + consumoA + "," 
+                + super.getClasificacion() + "," + super.getGama()+ "," 
+                + super.getIds() + "," + super.getNombre() + "," + super.getPrecio() + "," + super.getStock();
+    }
 }

@@ -37,6 +37,12 @@ public class Ropa extends Articulo implements Reciclable{
         this.color = c;
         this.talla = t;
     }
+    public Ropa(String[] valores){
+        String color = 
+        super(co, n, p, s);
+        this.color = valores[0];
+        this.talla = t;
+    }
 
     /**
      * @return the talla
@@ -62,6 +68,10 @@ public class Ropa extends Articulo implements Reciclable{
     @Override
     public String toString (){
         return super.toString() + "Color: " + color + "\nTalla: " + getTalla() + "\n";
+    }
+    
+    public String  toStringFile(){
+        return color + "," + talla + "," + super.getIds() + "," + super.getNombre() + "," + super.getPrecio() + "," + super.getStock();
     }
 
     @Override

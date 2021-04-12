@@ -30,6 +30,10 @@ public class Tecnologia extends Articulo {
         return tpt;
     }
 
+    public String  toStringFile(){
+        return super.getIds() + "," + super.getNombre() + "," + super.getPrecio() + "," + super.getStock() + "," + tpt;
+    }
+    
     /**
      * @param tpt the tpt to set
      */

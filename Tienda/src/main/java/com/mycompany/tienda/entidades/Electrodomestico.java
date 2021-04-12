@@ -99,4 +99,7 @@ public class Electrodomestico extends Articulo{
 //        return conf;
 //    }
 
+    public String  toStringFile(){
+        return clasificacion + "," + gama + "," + super.getIds() + "," + super.getNombre() + "," + super.getPrecio() + "," + super.getStock();
+    }
 }

@@ -41,6 +41,7 @@ public abstract class Articulo {
     }
     
     public abstract void applypromo(String codigopromo);
+    public abstract String toStringFile();
     /**
      *
      * @return

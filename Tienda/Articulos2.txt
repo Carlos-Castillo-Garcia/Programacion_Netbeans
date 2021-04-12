@@ -1,0 +1,7 @@
+T0001,Monitor,200.0,10,componentes
+T0002,Teclado,30.0,40,ordenadores
+T0003,Raton,25.99,100,ordenadores
+T0004,RJ45-5M-Cat 6,10.0,25,componentes
+rojo,M,R0005,jersei,15.0,35
+F,alta,E0006,lavadora,200.0,35
+Balay,500,5,65,99.5,A,alta,E0007,lavadora,200.0,35
